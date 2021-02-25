@@ -14,7 +14,7 @@ React-Router-Dom
 Yup
 Axios
 
-# Devs
+# Developers
 
 Aszalea Calderon - Lead React Dev
 Andrew Castillo- React Developer

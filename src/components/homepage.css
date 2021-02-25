@@ -1,0 +1,18 @@
+/* placeholders to see how the cards are doing */
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  margin: 1.5rem 3rem;
+}
+.recipeBox {
+  background-color: #b1b1bc;
+  margin: 10px;
+  padding: 10px 0;
+  align-content: center;
+}
+
+button {
+  padding: 10px 50px;
+  font-size: 75px;
+}

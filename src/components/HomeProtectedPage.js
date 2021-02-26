@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from './Nav';
 import './homepage.css'
+import NewRecipe from "./NewRecipe";
 
 
 const HomeProtectedPage = () => {
@@ -17,7 +18,7 @@ const HomeProtectedPage = () => {
     <div>
       <Nav />
       <h1>Recipes</h1>
-
+      <NewRecipe />
       {/* search bar */}
         <div className='search'>
           <label htmlFor='search'></label>
@@ -31,6 +32,8 @@ const HomeProtectedPage = () => {
             <button> + </button>
         </div>  
           <div className='recipeBox'>
+            {/* I think I can return a component here with a .map function of the component? */}
+            {/* though I think I need the something specific for it */}
             saved recipes go here
           </div>
           <div className='recipeBox'>

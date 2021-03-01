@@ -7,10 +7,10 @@ const formSchema = Yup.object().shape({
   username: Yup.string()
     .trim()
     .required("A username is required")
-    .min(4, "username must be at least 4 characters"),
+    .min(4, "Must be at least 4 characters"),
   password: Yup.string()
     .required("A password is required")
-    .min(6, "password must be at least 6 characters")
+    .min(6, "Must be at least 6 characters")
 });
 
 // SignIn component
@@ -47,7 +47,7 @@ const SignIn = () => {
       .catch((err) => {
         setErrors({
           ...errors,
-          [name]: err.errors[0]
+          [name]: err.errors[0] 
         });
       });
     setFormState({
@@ -71,7 +71,9 @@ const SignIn = () => {
   };
 
   return (
+    
     <form onSubmit={formSignIn}>
+      <h1>Secret Family Recipes</h1>
       <label htmlFor="username">
         Username:
         <input
@@ -96,7 +98,7 @@ const SignIn = () => {
           onChange={(e) => inputChange(e)}
         />
         {errors.password.length > 0 && (
-          <p className="error">{errors.password}</p>
+          <p className="error">{errors.password}</p> 
         )}
       </label>
 

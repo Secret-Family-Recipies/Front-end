@@ -26,8 +26,6 @@ const SignIn = () => {
     username: "",
     password: ""
   });
-  const [post, setPost] = useState([]);
-  console.log(post)
 
   useEffect(() => {
     formSchema.isValid(formState).then((valid) => {
@@ -61,11 +59,11 @@ const SignIn = () => {
   // onSubmit function
   const formSignIn = (e) => {
     e.preventDefault();
-    setFormState({ username: "", password: "" });
+    const newUser = ({ username: "", password: "" });
     axios
-      .post("https://reqres.in/api/users", formState)
+      .post("https://reqres.in/api/users", newUser)
       .then((res) => {
-        setPost(res.data);
+        setFormState(res.data); // here if theres an issue
         console.log("success", res);
       })
       .catch((err) => console.log(err.res));

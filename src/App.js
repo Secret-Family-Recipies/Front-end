@@ -1,11 +1,14 @@
 import React from "react";
 //import { Counter } from "./features/counter/Counter";
 import "./App.css";
+import Nav from "./components/Nav";
+import SignIn from "./components/SignIn";
 
 function App() {
   return (
     <div className="App">
-      <h1>Secret Family Recipes</h1>
+      <Nav />
+      <SignIn />
     </div>
   );
 }

@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios'
-import * as Yup from 'yup'
-import { Link } from 'react-router-dom'
+import axios from "axios";
+import * as Yup from "yup";
+import { Link } from "react-router-dom";
+
+//InitialState
+const initialState = {
+  username: "",
+  password: "",
+};
 
 // formSchema using Yup
 const formSchema = Yup.object().shape({
@@ -11,21 +17,19 @@ const formSchema = Yup.object().shape({
     .min(4, "Must be at least 4 characters"),
   password: Yup.string()
     .required("A password is required")
-    .min(6, "Must be at least 6 characters")
+    .min(6, "Must be at least 6 characters"),
 });
 
 // SignIn component
-const SignIn = () => {
-  const [formState, setFormState] = useState({
-    username: "",
-    password: ""
-  });
-
+const SignIn = (props) => {
+  const [formState, setFormState] = useState(initialState);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [errors, setErrors] = useState({
     username: "",
-    password: ""
+    password: "",
   });
+  //This handles the token to navigate to the HomePrivate Route
+  // const { push } = props.history;
 
   useEffect(() => {
     formSchema.isValid(formState).then((valid) => {
@@ -39,32 +43,37 @@ const SignIn = () => {
     Yup.reach(formSchema, name)
       .validate(value)
       .then((valid) => {
+        //This is setting the state to the form
+        setFormState({
+          ...formState,
+          [e.target.id]: e.target.value,
+        });
+        //This is setting the errors if there are errors
         setErrors({
           ...errors,
-          [name]: ""
+          [name]: "",
         });
       })
       .catch((err) => {
         setErrors({
           ...errors,
-          [name]: err.errors[0] 
+          [name]: err.errors[0],
         });
       });
     setFormState({
       ...formState,
-      [name]: value
+      [name]: value,
     });
   };
 
   // onSubmit function
   const formSignIn = (e) => {
     e.preventDefault();
-    const newUser = ({ username: "", password: "" });
     axios
-      .post("https://reqres.in/api/users", newUser)
+      .post("#", formState)
       .then((res) => {
-        setFormState(res.data); // here if theres an issue
-        console.log("success", res);
+        localStorage.setItem("token", res.data.payload); //Here?
+        // push("/HomeProtectedPage");
       })
       .catch((err) => console.log(err.res));
   };
@@ -96,7 +105,7 @@ const SignIn = () => {
           onChange={(e) => inputChange(e)}
         />
         {errors.password.length > 0 && (
-          <p className="error">{errors.password}</p> 
+          <p className="error">{errors.password}</p>
         )}
       </label>
 

@@ -27,6 +27,7 @@ const SignIn = () => {
     password: ""
   });
   const [post, setPost] = useState([]);
+  console.log(post)
 
   useEffect(() => {
     formSchema.isValid(formState).then((valid) => {

@@ -1,4 +1,5 @@
 import React from "react";
+import Nav from "./Nav";
 
 const EditRecipe = () => {
   return (
@@ -30,5 +31,5 @@ const EditRecipe = () => {
     </div>
   );
 };
-
+//yah??
 export default EditRecipe;

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Nav from "./Nav";
 import "./homepage.css";
-import NewRecipe from "./NewRecipe";
 import { axiosWithAuth } from "./axiosWithAuth";
+import { Link } from "react-router-dom";
 
 const HomeProtectedPage = () => {
   // I think I can useState here but not clear as to what I can add
   // keeping it commented for now till I have something solid to work with
   const [recipe, setRecipe] = useState([]);
-
+  // const [recipe, setRecipe] = useState([]);
   useEffect(() => {
     const getDatData = () => {
       axiosWithAuth()
@@ -21,7 +21,7 @@ const HomeProtectedPage = () => {
         });
     };
     getDatData();
-  }, []);
+  }, [recipe]);
   // axios get data from api to put examples that users can use?
   // Make new component for the saved recipe/recipe boxes that produced when
   // -add recipe button is pressed
@@ -42,18 +42,14 @@ const HomeProtectedPage = () => {
     <div>
       <Nav />
       <h1>Recipes</h1>
-      <NewRecipe />
-      {/* search bar */}
-      <div className="search">
-        <label htmlFor="search"></label>
-        <input type="text" placeholder="Search" />
-      </div>
 
       {/* container for the details of the page  */}
       <div className="container">
         {/* button to add new entry */}
         <div>
-          <button> + </button>
+          <Link to="/newRecipe">
+            <button> + </button>
+          </Link>
         </div>
         <div className="recipeBox">
           {/* I think I can return a component here with a .map function of the component? */}

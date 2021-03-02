@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import * as Yup from 'yup'
+import { Link } from 'react-router-dom'
 
 // formSchema using Yup
 const formSchema = Yup.object().shape({
@@ -60,7 +61,6 @@ const SignIn = () => {
   const formSignIn = (e) => {
     e.preventDefault();
     setFormState({ username: "", password: "" });
-    console.log("Signed in!");
     axios
       .post("https://reqres.in/api/users", formState)
       .then((res) => {
@@ -71,7 +71,6 @@ const SignIn = () => {
   };
 
   return (
-    
     <form onSubmit={formSignIn}>
       <h1>Secret Family Recipes</h1>
       <label htmlFor="username">
@@ -103,7 +102,7 @@ const SignIn = () => {
       </label>
 
       <button disabled={buttonDisabled}>Sign In</button>
-      {/* <button>New User?</button> */}
+      <Link to="/Signup">New User?</Link>
     </form>
   );
 };

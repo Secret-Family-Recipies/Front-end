@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Recipes = () => {
   return (
@@ -8,7 +9,9 @@ const Recipes = () => {
       <h3>Ingredients: ADD DATA</h3>
       <h3>Instructions: ADD DATA</h3>
       <h3>Category: ADD DATA</h3>
-      <button>Edit</button>
+      <Link to="/editRecipe">
+        <button>Edit</button>
+      </Link>
       <button>Delete</button>
     </>
   );

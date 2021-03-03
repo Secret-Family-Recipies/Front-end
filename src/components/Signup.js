@@ -59,7 +59,7 @@ const Signup = (props) => {
       )
       .then((res) => {
         localStorage.setItem("token", res.data.payload);
-        push("/HomeProtectedPage");
+        push("/recipes");
         setFormState({
           username: "",
           password: "",

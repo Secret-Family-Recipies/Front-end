@@ -3,6 +3,7 @@ import * as yup from "yup";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Nav from "./Nav";
+import { axiosWithAuth } from "./axiosWithAuth";
 const initSomething = {
   title: "",
   source: "",
@@ -60,15 +61,8 @@ const NewRecipe = () => {
 
   const submit = (e) => {
     e.preventDefault(); //prevent refresh
-    const newUser = {
-      title: form.user,
-      source: form.user,
-      ingredients: form.user,
-      instructions: form.user,
-      options: form.user,
-    };
-    axios
-      .post("https://reqres.in/api/users", newUser) //send data to the api
+    axiosWithAuth()
+      .post("https://secret-family-recipies00.herokuapp.com/api/recipes", form) //send data to the api
       .then((res) => {
         // setForm(res.data); //setForm state to be the data posted
         setForm([res.data, ...form]);

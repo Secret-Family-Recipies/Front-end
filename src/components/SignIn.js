@@ -76,15 +76,16 @@ const SignIn = (props) => {
   }
 
   const change = (e) => {
+    console.log(formState, "form");
     const { name, value } = e.target;
-    const valueToUse = value;
+    //const valueToUse = value;
     validateChange(e);
-    setFormState({ ...formState, [name]: valueToUse });
-    setErrors(name, valueToUse);
+    setFormState({ ...formState, [name]: value });
+    setErrors(name, value);
   };
 
   // onSubmit function
-  const formSignIn = (e) => {
+  const submit = (e) => {
     e.preventDefault();
     axios
       .post(
@@ -92,8 +93,9 @@ const SignIn = (props) => {
         formState
       )
       .then((res) => {
+        console.log(formState);
         localStorage.setItem("token", res.data.payload); //Here?
-        push("/HomeProtectedPage");
+        push("/recipes");
       })
       .catch((err) => console.log(err.res));
   };
@@ -104,7 +106,7 @@ const SignIn = (props) => {
       <section className="wrapper">
         <img src={foodImg} className="cardImg" alt="food"></img>
         <section className="card1">
-          <form onSubmit={formSignIn}>
+          <form onSubmit={submit}>
             <label htmlFor="username">
               Username:
               <input

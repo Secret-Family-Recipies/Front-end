@@ -3,20 +3,27 @@ import Nav from "./Nav";
 import "./homepage.css";
 import { axiosWithAuth } from "./axiosWithAuth";
 import PrivateRoute from "./PrivateRoute";
-
-const initialRecipe = {
-  id: 1,
-  title: "",
-  createdBy: "",
-  ingredients: "",
-  instructions: "",
-};
+import { Link } from "react-router-dom";
 
 const HomeProtectedPage = () => {
   // I think I can useState here but not clear as to what I can add
   // keeping it commented for now till I have something solid to work with
-  const [recipe, setRecipe] = useState(initialRecipe);
+  const [recipe, setRecipe] = useState([]);
   const [editing, setEditing] = useState(false);
+
+  const getRecipe = () => {
+    axiosWithAuth()
+      .get(`https://secret-family-recipies00.herokuapp.com/api/recipes`)
+      .then((res) => {
+        setRecipe(res.data.recipes);
+      })
+      .catch((err) => {
+        console.log("My Error", err);
+      });
+  };
+  useEffect(() => {
+    getRecipe();
+  }, []);
 
   const editRecipe = (recipe) => {
     setEditing(true);
@@ -85,17 +92,22 @@ const HomeProtectedPage = () => {
       {/* container for the details of the page  */}
       <div className="container">
         <div>
-          <PrivateRoute to="/newRecipe">
+          <Link to="/newRecipe">
             <button> + </button>
-          </PrivateRoute>
+          </Link>
         </div>
         <div className="recipeBox">
-          {/* I think I can return a component here with a .map function of the component? */}
-          {/* though I think I need the something specific for it */}
-          saved recipes go here
+          {recipe.map((res) => (
+            <Link to="/Recipe">
+              <div>
+                <h2>{res.title}</h2>
+                <p>Author:{res.createdBy}</p>
+                <p>Ingredients:{res.ingredients}</p>
+                <p>instructions:{res.instructions}</p>
+              </div>
+            </Link>
+          ))}
         </div>
-        <div className="recipeBox">saved recipes go here</div>
-        <div className="recipeBox">saved recipes go here</div>
       </div>
     </div>
   );

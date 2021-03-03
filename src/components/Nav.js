@@ -9,10 +9,6 @@ const Nav = () => {
       <Link to="/">Logout</Link>
       <Link to="/recipes">Recipes</Link>
 
-      <div className="search">
-        <label htmlFor="search"></label>
-        <input type="text" placeholder="Search" />
-      </div>
       <img src={NavImg} className="nav" alt="food" />
     </div>
   );

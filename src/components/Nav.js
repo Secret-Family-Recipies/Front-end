@@ -6,8 +6,13 @@ const Nav = () => {
   return (
     <div>
       <h1>Secret Family Recipes</h1>
-      <Link to="/signin">Logout</Link>
+      <Link to="/">Logout</Link>
       <Link to="/recipes">Recipes</Link>
+
+      <div className="search">
+        <label htmlFor="search"></label>
+        <input type="text" placeholder="Search" />
+      </div>
       <img src={NavImg} className="nav" alt="food" />
     </div>
   );

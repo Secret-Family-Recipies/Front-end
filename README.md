@@ -21,4 +21,4 @@ Andrew Castillo- React Developer
 Caleb Smith- Backend Developer
 Casey Dietz- React Developer
 Rigo - React Developer
-Val - React Developer
+Valeriy Lysenko - React Developer

@@ -6,8 +6,8 @@ const Nav = () => {
   return (
     <div>
       <h1>Secret Family Recipes</h1>
-      <Link to="/signin">Logout</Link>
-      <Link to="/recipes">Recipes</Link>
+      <Link to="/signup">Sign up</Link>
+      <Link to="/signin">Logout</Link>     
       <img src={NavImg} className="nav" alt="food" />
     </div>
   );

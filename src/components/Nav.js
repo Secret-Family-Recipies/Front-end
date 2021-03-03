@@ -6,6 +6,7 @@ const Nav = () => {
   return (
     <div>
       <h1>Secret Family Recipes</h1>
+
       <Link to="/">Logout</Link>
       <Link to="/recipes">Recipes</Link>
 

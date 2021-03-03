@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as yup from "yup";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Nav from "./Nav";
 const initSomething = {
   title: "",
   source: "",
@@ -80,6 +81,7 @@ const NewRecipe = () => {
 
   return (
     <div>
+      <Nav />
       <h1>New Recipe</h1>
       <section className="wrapper2">
         <section className="card1">

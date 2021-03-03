@@ -6,15 +6,29 @@ import SignUp from "./components/Signup";
 import HomeProtectedPage from "./components/HomeProtectedPage";
 import { Route } from "react-router-dom";
 import NewRecipe from "./components/NewRecipe";
+import PrivateRoute from "./components/PrivateRoute";
+import EditRecipe from "./components/EditRecipe";
 
 function App() {
   return (
     <div className="App">
-      <Route exact path="/signin" component={SignIn}></Route>
+      <Route exact path="/" component={SignIn}></Route>
       <Route exact path="/signup" component={SignUp}></Route>
-      <Route exact path="/recipes" component={HomeProtectedPage}></Route>
-      <Route exact path="/newRecipe" component={NewRecipe}></Route>
-      <SignIn />
+      <PrivateRoute
+        exact
+        path="/recipes"
+        component={HomeProtectedPage}
+      ></PrivateRoute>
+      <PrivateRoute
+        exact
+        path="/newRecipe"
+        component={NewRecipe}
+      ></PrivateRoute>
+      <PrivateRoute
+        exact
+        path="/editRecipe"
+        component={EditRecipe}
+      ></PrivateRoute>
     </div>
   );
 }

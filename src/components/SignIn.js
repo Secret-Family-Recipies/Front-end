@@ -74,6 +74,7 @@ const SignIn = (props) => {
       <section className="wrapper">
         <img src={foodImg} className="cardImg" alt="food"></img>
         <section className="card1">
+          <h2>Sign in</h2>
           <form onSubmit={submit}>
             <label htmlFor="username">
               Username:
@@ -84,9 +85,8 @@ const SignIn = (props) => {
                 value={formState.username}
                 onChange={change}
               />
-              <p className="error">{errors.username}</p>
+              <p>{errors.username}</p>
             </label>
-            <br></br>
             <label htmlFor="password">
               Password:
               <input
@@ -98,13 +98,15 @@ const SignIn = (props) => {
               />
               <p className="error">{errors.password}</p>
             </label>
-            <br></br>
             <button disabled={buttonDisabled} className="cardButton">
               Sign In
             </button>
             <br></br>
             <br></br>
-            <Link to="/signup">New User?</Link>
+            <Link to="/signup" className="links">
+              New User?
+            </Link>
+            <br></br>
           </form>
         </section>
       </section>

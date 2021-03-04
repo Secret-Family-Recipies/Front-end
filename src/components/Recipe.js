@@ -39,18 +39,28 @@ const Recipes = (props) => {
   return (
     <>
       <Nav />
-      <div className="card1">
-        <h1>{recipe.title}</h1>
-        <h3>Created by:{recipe.createdBy}</h3>
-        <h3>Ingredients: {recipe.ingredients}</h3>
-        <h3>Instructions: {recipe.instructions}</h3>
+      <div className="wrapper">
+        <div className="card4">
+          <h1>{recipe.title}</h1>
+          <p>
+            <b>Created by: </b>
+            {recipe.createdBy}
+          </p>
+          <p>
+            <b>Ingredients: </b> {recipe.ingredients}
+          </p>
+          <p>
+            <b>Instructions: </b> {recipe.instructions}
+          </p>
 
-        <Link to={`/editRecipe${recipeId}`}>
-          <button className="cardButton">Edit</button>
-        </Link>
-        <button className="cardButton" onClick={deleteRecipe}>
-          Delete
-        </button>
+          <Link to={`/editRecipe${recipeId}`}>
+            <button className="cardButton">Edit</button>
+          </Link>
+          <br></br>
+          <button className="cardButton" onClick={deleteRecipe}>
+            Delete
+          </button>
+        </div>
       </div>
     </>
   );

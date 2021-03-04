@@ -78,6 +78,7 @@ const Signup = (props) => {
       <section className="wrapper">
         <img src={foodImg} className="cardImg" alt="food"></img>
         <section className="card1">
+          <h2>Sign up</h2>
           <form onSubmit={onSubmit}>
             <label htmlFor="username">
               Username:
@@ -102,15 +103,14 @@ const Signup = (props) => {
                 onChange={inputChange}
               />
             </label>
-            <br></br>
             <p className="error"> {errors.password} </p>
-
-            <br></br>
             <button disabled={btnDisabled} type="submit" className="cardButton">
               Submit
             </button>
-            <br></br>
-            <Link to="/">Current User?</Link>
+            <br></br> <br></br>
+            <Link to="/" className="links">
+              Current User?
+            </Link>
           </form>
         </section>
       </section>

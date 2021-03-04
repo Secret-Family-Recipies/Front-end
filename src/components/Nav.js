@@ -4,14 +4,23 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
-    <div>
-      <h1>Secret Family Recipes</h1>
-
-      <Link to="/">Logout</Link>
-      <Link to="/recipes">Recipes</Link>
-
+    <>
+      <nav className="flexing">
+        <div className="navBar2">
+          <h1>Secret Family Recipes</h1>
+        </div>
+        <div className="navBar">
+          <Link to="/" className="links">
+            Logout
+          </Link>
+          <Link to="/recipes" className="links">
+            Recipes
+          </Link>
+        </div>
+      </nav>
+      <br></br>
       <img src={NavImg} className="nav" alt="food" />
-    </div>
+    </>
   );
 };
 

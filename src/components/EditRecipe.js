@@ -3,6 +3,13 @@ import { axiosWithAuth } from "./axiosWithAuth";
 import { Link } from "react-router-dom";
 import Nav from "./Nav";
 
+// const initSomething = {
+//   title: `${recipeToEdit.title}`,
+//   createdBy: `${recipeToEdit.createdBy}`,
+//   ingredients: `${recipeToEdit.ingredients}`,
+//   instructions: `${recipeToEdit.instructions}`,
+// };
+
 const EditRecipe = (props) => {
   const [recipeToEdit, setRecipeToEdit] = useState("");
   const { push } = props.history;
@@ -49,59 +56,66 @@ const EditRecipe = (props) => {
   return (
     <>
       <Nav />
-      <div className="card1">
-        <h1>EditRecipe</h1>
-        <form>
-          <label htmlFor="title">{recipeToEdit.title}</label>
-          <input
-            onChange={change}
-            type="text"
-            placeholder="Edit Title"
-            name="title"
-          />
-          <br></br>
-          <label htmlFor="Createdby">
-            Created by: {recipeToEdit.createdBy}
-          </label>
-          <input
-            onChange={change}
-            type="text"
-            placeholder="Edit Author"
-            name="createdBy"
-          />
-          <br></br>
+      <div className="wrapper">
+        <div className="card">
+          <h1>Edit Recipe</h1>
+          <form>
+            <label htmlFor="title">{recipeToEdit.title}</label>
+            <input
+              onChange={change}
+              type="text"
+              placeholder="Edit Title"
+              name="title"
+              value={recipeToEdit.title}
+            />
+            <br></br>
+            <label htmlFor="Createdby">
+              Created by: {recipeToEdit.createdBy}
+            </label>
+            <input
+              onChange={change}
+              type="text"
+              placeholder="Edit Author"
+              name="createdBy"
+              value={recipeToEdit.createdBy}
+            />
+            <br></br>
 
-          <label htmlFor="ingredients">
-            Ingredients: {recipeToEdit.ingredients}
-          </label>
-          <input
-            onChange={change}
-            placeholder="Edit Ingredients"
-            type="text"
-            name="ingredients"
-          />
-          <br></br>
+            <label htmlFor="ingredients">
+              Ingredients: {recipeToEdit.ingredients}
+            </label>
+            <input
+              onChange={change}
+              placeholder="Edit Ingredients"
+              type="text"
+              name="ingredients"
+              value={recipeToEdit.ingredients}
+            />
+            <br></br>
 
-          <label htmlFor="instructions">
-            Instructions: {recipeToEdit.instructions}
-          </label>
-          <input
-            onChange={change}
-            placeholder="Edit Instructions"
-            type="text"
-            name="instructions"
-          />
-          <br></br>
+            <label htmlFor="instructions">
+              Instructions: {recipeToEdit.instructions}
+            </label>
+            <input
+              onChange={change}
+              placeholder="Edit Instructions"
+              type="text"
+              name="instructions"
+              value={recipeToEdit.instructions}
+            />
+            <br></br>
 
-          <button onClick={saveEdit} className="cardButton">
-            Save
-          </button>
+            <button onClick={saveEdit} className="cardButton">
+              Save
+            </button>
 
-          <br></br>
-          <Link to={`/recipe/${recipeId}`}>
-            <button className="cardButton">Cancel</button>
-          </Link>
-        </form>
+            <br></br>
+            <br></br>
+            <Link to={`/recipe/${recipeId}`}>
+              <button className="cardButton">Cancel</button>
+            </Link>
+          </form>
+        </div>
       </div>
     </>
   );

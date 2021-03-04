@@ -25,7 +25,8 @@ function App() {
         path="/newRecipe"
         component={NewRecipe}
       ></PrivateRoute>
-      <PrivateRoute exact path="/recipe" component={Recipe}></PrivateRoute>
+      <PrivateRoute exact path="/recipe/:id" component={Recipe}></PrivateRoute>
+      {/* This makes it so you can oass in a variable through the URL */}
       <PrivateRoute
         exact
         path="/editRecipe"

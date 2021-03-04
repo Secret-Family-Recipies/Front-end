@@ -78,7 +78,6 @@ const SignIn = (props) => {
   const change = (e) => {
     console.log(formState, "form");
     const { name, value } = e.target;
-    //const valueToUse = value;
     validateChange(e);
     setFormState({ ...formState, [name]: value });
     setErrors(name, value);
@@ -94,7 +93,7 @@ const SignIn = (props) => {
       )
       .then((res) => {
         console.log(formState);
-        localStorage.setItem("token", res.data.payload); //Here?
+        localStorage.setItem("token", res.data.token); //Here?
         push("/recipes");
       })
       .catch((err) => console.log(err.res));

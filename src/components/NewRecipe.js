@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import * as yup from "yup";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import { axiosWithAuth } from "./axiosWithAuth";

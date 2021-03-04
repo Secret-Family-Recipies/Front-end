@@ -57,3 +57,7 @@ input {
 
   text-align: center;
 }
+.card3 {
+  background-color: none;
+  border: solid black 1px;
+}

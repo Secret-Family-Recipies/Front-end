@@ -8,6 +8,7 @@ import { Route } from "react-router-dom";
 import NewRecipe from "./components/NewRecipe";
 import PrivateRoute from "./components/PrivateRoute";
 import EditRecipe from "./components/EditRecipe";
+import Recipe from "./components/Recipe";
 
 function App() {
   return (
@@ -24,9 +25,11 @@ function App() {
         path="/newRecipe"
         component={NewRecipe}
       ></PrivateRoute>
+      <PrivateRoute exact path="/recipe/:id" component={Recipe}></PrivateRoute>
+      {/* This makes it so you can oass in a variable through the URL */}
       <PrivateRoute
         exact
-        path="/editRecipe"
+        path="/editRecipe:id"
         component={EditRecipe}
       ></PrivateRoute>
     </div>

@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
 import * as yup from "yup";
-import axios from "axios";
-import { Link } from "react-router-dom";
 import Nav from "./Nav";
+import { axiosWithAuth } from "./axiosWithAuth";
 const initSomething = {
   title: "",
+
   source: "",
   ingredients: "",
   instructions: "",
-  options: "",
 };
 
-const NewRecipe = () => {
+const NewRecipe = (props) => {
   // states
+  const { push } = props.history;
+
   const [form, setForm] = useState(initSomething);
-  const [disabled, setDisabled] = useState(true);
+  //const [disabled, setDisabled] = useState(true);
+  const [setDisabled] = useState(true);
   const [errors, setErrors] = useState(initSomething);
 
   // change handler
@@ -60,18 +62,12 @@ const NewRecipe = () => {
 
   const submit = (e) => {
     e.preventDefault(); //prevent refresh
-    const newUser = {
-      title: form.user,
-      source: form.user,
-      ingredients: form.user,
-      instructions: form.user,
-      options: form.user,
-    };
-    axios
-      .post("https://reqres.in/api/users", newUser) //send data to the api
+    axiosWithAuth()
+      .post("/api/recipes", form) //send data to the api
       .then((res) => {
+        push("/recipes");
         // setForm(res.data); //setForm state to be the data posted
-        setForm([res.data, ...form]);
+        setForm(res.data, ...form);
         console.log(res.data);
       })
       .catch((err) => {
@@ -129,29 +125,10 @@ const NewRecipe = () => {
               />
             </label>
             <br></br>
-            <label>
-              <div>{errors.options}</div>
-              Category
-              <select
-                name="options"
-                value={form.category}
-                onChange={changeHandler}
-              >
-                <option value="">--Choose Category--</option>
-                <option value="breakfast">Breakfast</option>
-                <option value="brunch">Brunch</option>
-                <option value="lunch">Lunch</option>
-                <option value="dessert">Dessert</option>
-                <option value="snack">Snacks</option>
-                <option value="drink">Drinks</option>
-              </select>
-            </label>
+
             <br></br>
-            <Link to="/recipes">
-              <button disabled={disabled} className="cardButton">
-                Add Recipe
-              </button>
-            </Link>
+
+            <button className="cardButton">Add Recipe</button>
           </form>
         </section>
       </section>

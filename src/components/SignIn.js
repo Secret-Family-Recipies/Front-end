@@ -25,12 +25,9 @@ const formSchema = Yup.object().shape({
 const SignIn = (props) => {
   const [formState, setFormState] = useState(initialState);
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [errors, setErrors] = useState({
-    username: "",
-    password: "",
-  });
+  const [errors, setErrors] = useState(initialState);
   //This handles the token to navigate to the HomePrivate Route
-  // const { push } = props.history;
+  const { push } = props.history;
 
   useEffect(() => {
     formSchema.isValid(formState).then((valid) => {
@@ -38,43 +35,35 @@ const SignIn = (props) => {
     });
   }, [formState]);
 
-  // onChange function
-  const inputChange = (e) => {
-    const { name, value } = e.target;
-    Yup.reach(formSchema, name)
-      .validate(value)
-      .then((valid) => {
-        //This is setting the state to the form
-        setFormState({
-          ...formState,
-          [e.target.id]: e.target.value,
-        });
-        //This is setting the errors if there are errors
-        setErrors({
-          ...errors,
-          [name]: "",
-        });
+  function validateChange(e) {
+    Yup.reach(formSchema, e.target.name)
+      .validate(e.target.value)
+      .then(() => {
+        setErrors({ ...errors, [e.target.name]: "" });
       })
       .catch((err) => {
-        setErrors({
-          ...errors,
-          [name]: err.errors[0],
-        });
+        setErrors({ ...errors, [e.target.name]: err.errors[0] });
       });
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
+  }
+
+  const change = (e) => {
+    const { name, value } = e.target;
+    validateChange(e);
+    setFormState({ ...formState, [name]: value });
+    setErrors(name, value);
   };
 
   // onSubmit function
-  const formSignIn = (e) => {
+  const submit = (e) => {
     e.preventDefault();
     axios
-      .post("#", formState)
+      .post(
+        "https://secret-family-recipies00.herokuapp.com/api/auth/login",
+        formState
+      )
       .then((res) => {
-        localStorage.setItem("token", res.data.payload); //Here?
-        // push("/HomeProtectedPage");
+        localStorage.setItem("token", res.data.token); //Here?
+        push("/recipes");
       })
       .catch((err) => console.log(err.res));
   };
@@ -85,7 +74,7 @@ const SignIn = (props) => {
       <section className="wrapper">
         <img src={foodImg} className="cardImg" alt="food"></img>
         <section className="card1">
-          <form onSubmit={formSignIn}>
+          <form onSubmit={submit}>
             <label htmlFor="username">
               Username:
               <input
@@ -93,11 +82,9 @@ const SignIn = (props) => {
                 name="username"
                 placeholder="Enter your username"
                 value={formState.username}
-                onChange={(e) => inputChange(e)}
+                onChange={change}
               />
-              {errors.username.length > 0 && (
-                <p className="error">{errors.username}</p>
-              )}
+              <p className="error">{errors.username}</p>
             </label>
             <br></br>
             <label htmlFor="password">
@@ -107,11 +94,9 @@ const SignIn = (props) => {
                 name="password"
                 placeholder="Enter your password"
                 value={formState.password}
-                onChange={(e) => inputChange(e)}
+                onChange={change}
               />
-              {errors.password.length > 0 && (
-                <p className="error">{errors.password}</p>
-              )}
+              <p className="error">{errors.password}</p>
             </label>
             <br></br>
             <button disabled={buttonDisabled} className="cardButton">

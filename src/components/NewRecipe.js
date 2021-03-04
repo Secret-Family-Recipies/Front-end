@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as yup from "yup";
 import Nav from "./Nav";
 import { axiosWithAuth } from "./axiosWithAuth";
@@ -16,7 +16,7 @@ const NewRecipe = (props) => {
   const { push } = props.history;
 
   const [form, setForm] = useState(initSomething);
-  const [disabled, setDisabled] = useState(true);
+  // const [setDisabled] = useState(true);
   const [errors, setErrors] = useState(initSomething);
 
   // change handler
@@ -43,9 +43,9 @@ const NewRecipe = (props) => {
   });
 
   // useEffect stuff
-  useEffect(() => {
-    schema.isValid(form).then((valid) => setDisabled(!valid)); //passing the opposite
-  });
+  // useEffect(() => {
+  //   schema.isValid(form).then((valid) => setDisabled(!valid)); //passing the opposite
+  // });
 
   //form errors
   const setFormErr = (name, value) => {
@@ -124,9 +124,7 @@ const NewRecipe = (props) => {
             </label>
 
             <div className="buttonButt">
-              <button className="cardButton" disabled={disabled}>
-                Add Recipe
-              </button>
+              <button className="cardButton">Add Recipe</button>
               <br></br>
               <br></br>
               <Link to={`/recipes`}>

@@ -29,7 +29,7 @@ function App() {
       {/* This makes it so you can oass in a variable through the URL */}
       <PrivateRoute
         exact
-        path="/editRecipe"
+        path="/editRecipe:id"
         component={EditRecipe}
       ></PrivateRoute>
     </div>

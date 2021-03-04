@@ -9,68 +9,6 @@ const HomeProtectedPage = () => {
   // I think I can useState here but not clear as to what I can add
   // keeping it commented for now till I have something solid to work with
   const [recipe, setRecipe] = useState([]);
-  // const [editing, setEditing] = useState(false);
-
-  // const getRecipe = () => {
-  //   //Here?
-  //   axiosWithAuth()
-  //     .get(`https://secret-family-recipies00.herokuapp.com/api/recipes`)
-  //     .then((res) => {
-  //       setRecipe(res.data.recipes);
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log("My eeeee", err);
-  //     });
-  // };
-  // useEffect(() => {
-  //   getRecipe();
-  // }, []);
-
-  // const editRecipe = (recipe) => {
-  //   setEditing(true);
-  //   setRecipe(recipe);
-  // };
-
-  //Saving edit
-  // const saveEdit = (e) => {
-  //   e.preventDefault();
-  //   axiosWithAuth()
-  //     .put(
-  //       `https://secret-family-recipies00.herokuapp.com/api/recipes/${recipe.id}`,
-  //       recipe
-  //     )
-  //     .then((res) => {
-  //       console.log(res.data.id);
-  //       const state = recipe.map((res) => {
-  //         if (res.id === res.data.id) {
-  //           return recipe;
-  //         } else {
-  //           return res;
-  //         }
-  //       });
-  //       setEditing(false);
-  //     })
-  //     .catch((err) => {
-  //       console.error("My Error", err);
-  //     });
-  // };
-
-  //Deleting
-  // const deleteRecipe = (res) => {
-  //   console.log(res.id);
-  //   axiosWithAuth()
-  //     .delete(`https://secret-family-recipies00.herokuapp.com/${res.id}`)
-  //     .then((res) => {
-  //       const filteredArray = recipe.filter(
-  //         (res) => res.id !== res.data //Here?
-  //       );
-  //       recipe(filteredArray);
-  //     })
-  //     .catch((err) => {
-  //       console.error(`My error`, err);
-  //     });
-  // };
 
   useEffect(() => {
     const getDatData = () => {
@@ -84,7 +22,7 @@ const HomeProtectedPage = () => {
         });
     };
     getDatData();
-  }, [recipe]);
+  }, []);
 
   //routing for the single recipe
   // const singleRec = (res) => {};
@@ -98,26 +36,25 @@ const HomeProtectedPage = () => {
       <div className="container">
         <div>
           <Link to="/newRecipe">
-            <button> + </button>
+            <button className="cardButton"> + </button>
           </Link>
         </div>
-        <div className="recipeBox">
+        <section className="card3">
           {recipe.map((res) => (
-            <div>
-              <Link to={`/recipe/${res.id}`}>
-                {/* //This takes each id from the recipe data because we are mapping
+            <Link to={`/recipe/${res.id}`} key={res.id}>
+              {/* //This takes each id from the recipe data because we are mapping
               though and then we can use it to click */}
-                {/*  //OnClick with the ability to link to that recipe, on the div, the route should take the id, using the id, useEffect pull the id from the url */}
-                <div>
-                  <h2>{res.title}</h2>
-                  <p>Author:{res.createdBy}</p>
-                  <p>Ingredients:{res.ingredients}</p>
-                  <p>instructions:{res.instructions}</p>
-                </div>
-              </Link>
-            </div>
+              {/*  //OnClick with the ability to link to that recipe, on the div, the route should take the id, using the id, useEffect pull the id from the url */}
+              <div>
+                <h2>{res.title}</h2>
+                <p>Author:{res.createdBy}</p>
+                <p>Ingredients:{res.ingredients}</p>
+                <p>instructions:{res.instructions}</p>
+              </div>
+              <br></br>
+            </Link>
           ))}
-        </div>
+        </section>
       </div>
     </div>
   );

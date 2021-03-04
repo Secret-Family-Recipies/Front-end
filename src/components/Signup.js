@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import axios from "axios";
+import foodImg from "../assets/CardImg.png";
+import { Link } from "react-router-dom";
 
 const Signup = (props) => {
   const [formState, setFormState] = useState({
@@ -72,39 +74,46 @@ const Signup = (props) => {
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            id="username"
-            placeholder="Enter username"
-            value={formState.name}
-            onChange={inputChange}
-          />
-        </label>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Enter password"
-            value={formState.password}
-            onChange={inputChange}
-          />
-        </label>
-        <div style={{ color: "red", fontWeight: "bold" }}>
-          <p> {errors.username} </p>
-          <p> {errors.password} </p>
-        </div>
-        <div>
-          <button disabled={btnDisabled} type="submit">
-            Submit
-          </button>
-        </div>
-      </form>
+      <h1>Secret Family Recipes</h1>
+      <section className="wrapper">
+        <img src={foodImg} className="cardImg" alt="food"></img>
+        <section className="card1">
+          <form onSubmit={onSubmit}>
+            <label htmlFor="username">
+              Username:
+              <input
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Enter username"
+                value={formState.name}
+                onChange={inputChange}
+              />
+            </label>
+            <p className="error"> {errors.username} </p>
+            <label htmlFor="password">
+              Password:
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter password"
+                value={formState.password}
+                onChange={inputChange}
+              />
+            </label>
+            <br></br>
+            <p className="error"> {errors.password} </p>
+
+            <br></br>
+            <button disabled={btnDisabled} type="submit" className="cardButton">
+              Submit
+            </button>
+            <br></br>
+            <Link to="/">Current User?</Link>
+          </form>
+        </section>
+      </section>
     </div>
   );
 };

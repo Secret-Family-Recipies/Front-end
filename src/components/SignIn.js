@@ -35,35 +35,6 @@ const SignIn = (props) => {
     });
   }, [formState]);
 
-  // onChange function
-  // const inputChange = (e) => {
-  //   const { name, value } = e.target;
-  //   Yup.reach(formSchema, name)
-  //     .validate(value)
-  //     .then((valid) => {
-  //       //This is setting the state to the form
-  //       setFormState({
-  //         ...formState,
-  //         [e.target.id]: e.target.value,
-  //       });
-  //       //This is setting the errors if there are errors
-  //       setErrors({
-  //         ...errors,
-  //         [name]: "",
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       setErrors({
-  //         ...errors,
-  //         [name]: err.errors[0],
-  //       });
-  //     });
-  //   setFormState({
-  //     ...formState,
-  //     [name]: value,
-  //   });
-  // };
-
   function validateChange(e) {
     Yup.reach(formSchema, e.target.name)
       .validate(e.target.value)
@@ -76,7 +47,6 @@ const SignIn = (props) => {
   }
 
   const change = (e) => {
-    console.log(formState, "form");
     const { name, value } = e.target;
     validateChange(e);
     setFormState({ ...formState, [name]: value });
@@ -92,7 +62,6 @@ const SignIn = (props) => {
         formState
       )
       .then((res) => {
-        console.log(formState);
         localStorage.setItem("token", res.data.token); //Here?
         push("/recipes");
       })

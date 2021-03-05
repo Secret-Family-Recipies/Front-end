@@ -11,6 +11,21 @@ const initSomething = {
   instructions: "",
 };
 
+  // validation
+  //could do it on other component but easier this way
+  const schema = yup.object().shape({
+    title: yup
+      .string()
+      .required("Need to have a title")
+      .min(2, "more than 2 characters pls"),
+    createdBy: yup.string(),
+    ingredients: yup
+      .string()
+      .required("You need ingredients to make something"),
+    instructions: yup.string().required("Tell us how to make it thanks"),
+    // options: yup.string().required("Choose a category please"),
+  });
+
 const NewRecipe = (props) => {
   // states
   const { push } = props.history;
@@ -27,25 +42,10 @@ const NewRecipe = (props) => {
     setFormErr(name, valueToUse);
   };
 
-  // validation
-  //could do it on other component but easier this way
-  const schema = yup.object().shape({
-    title: yup
-      .string()
-      .required("Need to have a title")
-      .min(2, "more than 2 characters pls"),
-    createdBy: yup.string(),
-    ingredients: yup
-      .string()
-      .required("You need ingredients to make something"),
-    instructions: yup.string().required("Tell us how to make it thanks"),
-    options: yup.string().required("Choose a category please"),
-  });
-
   // useEffect stuff
   useEffect(() => {
     schema.isValid(form).then((valid) => setDisabled(!valid)); //passing the opposite
-  });
+  }, [form]);
 
   //form errors
   const setFormErr = (name, value) => {

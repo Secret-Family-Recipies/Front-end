@@ -19,7 +19,11 @@ const Signup = (props) => {
   const [btnDisabled, setBtnDisabled] = useState(true);
 
   const formSchema = yup.object().shape({
-    username: yup.string().trim().required("Username is required"),
+    username: yup
+    .string()
+    .trim()
+    .required("Username is required")
+    .min(4, "Must be at least 4 characters"),
     password: yup
       .string()
       .trim()

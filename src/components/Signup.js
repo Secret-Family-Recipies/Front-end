@@ -64,7 +64,7 @@ const Signup = (props) => {
         formState
       )
       .then((res) => {
-        localStorage.setItem("token", res.data.payload);
+        localStorage.setItem("token", res.data.token);
         push("/recipes");
         setFormState({
           username: "",
